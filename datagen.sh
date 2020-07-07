@@ -20,10 +20,3 @@ printf 's:$LearnerCount:'"$LEARNER_COUNT_VALUE"':\n' >> $SED_FILE
 printf 's:$CourseId:'"$COURSE_ID_VALUE"':\n' >> $SED_FILE
 
 sed -f $SED_FILE $TEMPLATE_FILE > $TARGET_FILE
-
-if [ $? -eq 0 ]; then
-   echo sed replacement command passed!
-   mm.data.generator.exe
-else
-   oops! something went wrong!
-fi
