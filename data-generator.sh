@@ -24,6 +24,7 @@ sed -f $SED_FILE $TEMPLATE_FILE > $TARGET_FILE
 if [ $? -eq 0 ]; then
    echo sed replacement command passed!
    curl https://raw.githubusercontent.com/scottyhardy/docker-wine/master/docker-wine -o docker-wine
+   ls -al
    chmod +x docker-wine
    chmod +x ./mm.data.generator.exe
    ./docker-wine/mm.data.generator.exe
