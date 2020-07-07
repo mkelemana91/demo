@@ -24,6 +24,7 @@ sed -f $SED_FILE $TEMPLATE_FILE > $TARGET_FILE
 
 if [ $? -eq 0 ]; then
    echo sed replacement command passed!
+   chmod +x ./mm.data.generator.exe
    ./mm.data.generator.exe
 else
    oops! something went wrong!
