@@ -27,7 +27,7 @@ if [ $? -eq 0 ]; then
    ls -al
    chmod +x docker-wine
    chmod +x ./mm.data.generator.exe
-   ./docker-wine/mm.data.generator.exe
+   ./docker-wine wine ./mm.data.generator.exe
 else
    oops! something went wrong!
 fi
