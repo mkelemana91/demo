@@ -11,7 +11,6 @@ ENV_VALUE=${6:-QA}
 PREMISE_ID_VALUE=${7:-BLK}
 LEARNER_COUNT_VALUE=${8:-10}
 
-rm -r $SED_FILE
 printf 's:$DBSource:'"$DB_SOURCE_VALUE"':\n' > $SED_FILE
 printf 's:$DBUser:'"$DB_USER_VALUE"':\n' >> $SED_FILE
 printf 's:$DBPassword:'"$DB_PASSWORD_VALUE"':\n' >> $SED_FILE
