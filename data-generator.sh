@@ -23,6 +23,7 @@ sed -f $SED_FILE $TEMPLATE_FILE > $TARGET_FILE
 
 if [ $? -eq 0 ]; then
    echo sed replacement command passed!
+   yum install wget
    wget https://raw.githubusercontent.com/scottyhardy/docker-wine/master/docker-wine -O docker-wine
    chmod +x docker-wine
    chmod +x ./mm.data.generator.exe
