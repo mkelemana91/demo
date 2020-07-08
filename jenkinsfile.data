@@ -6,7 +6,7 @@ pipeline {
             steps {
                 checkout(
                         [$class: 'GitSCM',
-                         branches: [[name: '*/feat/data']],
+                         branches: [[name: '*/master']],
                          doGenerateSubmoduleConfigurations: false,
                          extensions                       : [
                                  [$class: 'CleanBeforeCheckout'],
