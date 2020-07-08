@@ -1,0 +1,46 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout(
+                        [$class: 'GitSCM',
+                         branches: [[name: '*/master']],
+                         doGenerateSubmoduleConfigurations: false,
+                         extensions                       : [
+                                 [$class: 'CleanBeforeCheckout'],
+                                 [$class: 'PruneStaleBranch']
+                         ],
+                         submoduleCfg: [],
+                         userRemoteConfigs:
+                                 [[credentialsId: '95d357fb-7414-4a4e-a07f-d151d9c6a262',
+                                   url: '[git@gitlab.globalkinetic.com:49222]:mm/mm-data-tools.git']]]) }
+        }
+        stage('Data') {
+            environment {
+                DATA_PARAMS = "${TEMPLATE_FILE} \
+                               ${TARGET_FILE} \
+                               ${DB_SOURCE_VALUE} \
+                               ${DB_USER_VALUE} \
+                               ${DB_PASSWORD_VALUE} \
+                               ${ENV_VALUE} \
+                               ${PREMISE_ID_VALUE} \
+                               ${LEARNER_COUNT_VALUE}"
+            }
+            steps {
+                script {
+                    bat 'dir'
+                    bat 'datagen.sh ' + DATA_PARAMS
+                }
+            }
+        }
+        stage('Generate') {
+            steps {
+                script {
+                    bat 'mm.data.generator.exe'
+                }
+            }
+        }
+    }
+}
